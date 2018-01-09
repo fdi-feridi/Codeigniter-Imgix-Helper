@@ -19,6 +19,19 @@ search code $autoload ['helper'] = array(''); and add imgix inside the helper
 example :
 > $autoload ['helper'] = array('imgix');
 
+
+```php
+function imgix($url, $params = array()) {
+        $url = trim(str_replace(array(base_url()), '', $url), '/');
+		//change with your domain name
+        if(base_url()=="https://yourwebsite.com/"){
+		//change with the domain name you registered in imgix
+            $url = 'https://yourwebsite.imgix.net/' . $url . '?' . http_build_query($params);
+        }
+        return $url;
+    }
+```
+
 Register imgix
 =====
 https://dashboard.imgix.com/signup
@@ -57,5 +70,5 @@ imgix('imagefiledirectory/image.png,array('mask'=> 'ellipse', 'w' => 100,'h'=>10
 # Results in
 https://yourwebsite.imgix.net/assets/images/placeholder.jpg?mask=ellipse&w=100&h=100
 ```
-for more complete reference https://docs.imgix.com/apis/url
+for more complete reference https://docs.imgix.com/apis/url 
 You probably got the hang of it.
